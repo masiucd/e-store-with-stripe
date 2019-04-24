@@ -1,3 +1,4 @@
+// > Ready! Aliased to https://server.ciszekmarcell.now.sh [in clipboard] [47s]
 const { ApolloServer } = require('apollo-server');
 const isEmail = require('isemail');
 
