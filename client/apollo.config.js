@@ -1,6 +1,9 @@
 module.exports = {
-  client: {
-    name: 'Space Explorer [web]',
-    service: 'space-explorer',
-  },
+  service: {
+    endpoint: {
+      url: "http://localhost:4000"
+    }
+    // OR
+    localSchemaFile: './path/to/schema.graphql'
+  }
 };
