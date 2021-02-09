@@ -63,7 +63,7 @@ const GlobalStyles = () => (
 
       body {
         background: var(--background);
-        font-family: var(----heading-font);
+        font-family: var(--body-font);
         font-weight: var(--font-weight);
         line-height: var(--line-body-height);
         color: var(--p);
