@@ -1,0 +1,14 @@
+[
+  {
+    "name": "products",
+    "path": "/products"
+  },
+  {
+    "name": "about",
+    "path": "/about"
+  },
+  {
+    "name": "faq",
+    "path": "/faq"
+  }
+]

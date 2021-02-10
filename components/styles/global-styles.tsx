@@ -48,6 +48,13 @@ const GlobalStyles = () => (
         --small: 0.75rem;
 
         --app-width: 970px;
+
+        --border-radius-m: 4px;
+        --border-radius-l: 6px;
+        --border-radius-xl: 8px;
+
+        /* transition */
+        --transition-s: 300ms ease-in-out all;
       }
 
       *::before,
@@ -104,7 +111,7 @@ const GlobalStyles = () => (
       h3,
       h4,
       h5 {
-        margin: 3rem 0 1.38rem;
+        margin-bottom: 1rem;
         font-family: var(--body-font);
         font-weight: var(--font-weight);
         line-height: var(--heading-line-height);
@@ -133,6 +140,14 @@ const GlobalStyles = () => (
 
       small {
         font-size: var(--small);
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--stroke);
+      }
+      ul {
+        list-style: none;
       }
     `}
   />
