@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react"
 
 const isOnClient = typeof window !== "undefined"
-export const useMediaQuery = (width: number) => {
-  const [media, setMedia] = useState(
-    isOnClient ? window.matchMedia(`(min-width: ${width}px)`) : null
-  )
 
-  const updateWindowWidth = () => {
-    setMedia(window.matchMedia(`(min-width: ${window.innerWidth}px)`))
-  }
+export const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(false)
 
   useEffect(() => {
-    window.addEventListener("resize", updateWindowWidth)
-    return () => {
-      window.removeEventListener("resize", updateWindowWidth)
-    }
-  }, [])
+    const media = isOnClient ? window.matchMedia(query) : null
 
-  return media
+    if (media && matches !== media?.matches) {
+      setMatches(media?.matches)
+    }
+
+    const listener = (): void => {
+      setMatches(media?.matches ?? false)
+    }
+
+    media?.addEventListener("change", listener)
+    return () => {
+      media?.removeEventListener("change", listener)
+    }
+  }, [matches, query])
+
+  return matches
 }

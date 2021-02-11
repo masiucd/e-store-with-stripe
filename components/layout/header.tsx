@@ -9,7 +9,7 @@ const headerStyles = css`
   margin-bottom: 1rem;
 `
 
-export const Header = () => {
+export const Header = (): JSX.Element => {
   return (
     <header className={headerStyles}>
       <Nav />

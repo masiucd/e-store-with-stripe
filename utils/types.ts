@@ -9,3 +9,9 @@ export interface NavData {
   name: string
   path: string
 }
+
+export interface MediaQueryListFallBack extends MediaQueryList {
+  media: string
+  matches: boolean
+  onchange: null
+}

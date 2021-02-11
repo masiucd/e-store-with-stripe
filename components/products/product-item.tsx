@@ -56,7 +56,7 @@ const bodyStyles = css`
   }
 `
 
-const ProductItem: React.FC<ProductItemProps> = ({ shoe }) => {
+const ProductItem: React.FC<ProductItemProps> = ({ shoe }): JSX.Element => {
   return (
     <StyledProductItem>
       <Link href="/">

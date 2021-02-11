@@ -23,7 +23,7 @@ const ProductsGrid = styled.ul`
     }
   }
 `
-export const Products = () => {
+export const Products = (): JSX.Element => {
   const shoesData = products as Array<Shoe>
 
   return (
