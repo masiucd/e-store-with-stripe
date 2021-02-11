@@ -7,9 +7,10 @@ const GlobalStyles = () => (
         --white: #fffffe;
         --dark-s: #2b2b34;
         --dark-m: #2b2c34;
-        --purple: #6246ea;
+        --purple: #6146ea;
         --red: #e45858;
         --grey: #d1d1e9;
+        --highlight-shadow: hsla(250, 80%, 60%, 0.49);
 
         /* element color */
         --background: var(--white);
