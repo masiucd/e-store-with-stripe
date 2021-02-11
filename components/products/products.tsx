@@ -7,12 +7,19 @@ import { above } from "@utils/media-query"
 
 const ProductsGrid = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
   grid-gap: 20px;
   padding: 1rem;
   @media ${above.tabletL} {
     li:nth-of-type(1) {
-      grid-column: 1/4;
+      grid-column: 1/3;
+
+      .body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
   }
 `

@@ -4,7 +4,9 @@ import { NavData } from "@utils/types"
 import Link from "next/link"
 import styled from "@emotion/styled"
 
-const NavListStyles = styled.ul``
+const NavListStyles = styled.ul`
+  display: flex;
+`
 
 export const NavList = () => {
   return (

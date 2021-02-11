@@ -4,13 +4,12 @@ import Image from "next/image"
 import styled from "@emotion/styled"
 import { css, cx } from "@emotion/css"
 import Link from "next/link"
+import { Button } from "@components/styles/button"
 interface ProductItemProps {
   shoe: Shoe
 }
 
 const StyledProductItem = styled.li`
-  /*  */
-
   box-shadow: var(--sh-l);
   border-radius: var(--border-radius-m);
   border: 2px solid var(--stroke);
@@ -29,12 +28,11 @@ const StyledProductItem = styled.li`
 const bodyStyles = css`
   padding: 1rem;
   h4 {
-    /* border-bottom: 2px solid var(--highlight); */
     position: relative;
     display: inline-block;
     &::before {
       content: "";
-      top: 2px;
+      top: -1px;
       left: 0;
       height: 0.4rem;
       background-color: var(--highlight);
@@ -44,7 +42,7 @@ const bodyStyles = css`
     }
     &::after {
       content: "";
-      bottom: 1px;
+      bottom: -3px;
       left: 0;
       height: 0.4rem;
       background-color: var(--highlight);
@@ -52,6 +50,9 @@ const bodyStyles = css`
       position: absolute;
       transform: skewX(10deg) skewY(2deg);
     }
+  }
+  p {
+    font-size: 1.5em;
   }
 `
 
@@ -73,6 +74,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ shoe }) => {
         <h4>{shoe.title}</h4>
         <p>{shoe.price}$</p>
         <p>{shoe.description}</p>
+        <Button type="button">add to cart</Button>
       </div>
     </StyledProductItem>
   )
