@@ -6,6 +6,7 @@ import styled from "@emotion/styled"
 import { useRouter } from "next/router"
 import { above } from "@utils/media-query"
 import { useMediaQuery } from "@hooks/media-query"
+import Fade from "@components/animated/fade"
 
 const NavListStyles = styled.ul`
   display: flex;
@@ -34,6 +35,7 @@ const NavListStyles = styled.ul`
     }
   }
 `
+const MobileList = styled(NavListStyles)``
 
 const renderNavData = (route: string) => (xs: NavData[]) =>
   xs.map(a => (
@@ -44,9 +46,11 @@ const renderNavData = (route: string) => (xs: NavData[]) =>
     </li>
   ))
 
-const MobileList = styled(NavListStyles)``
+interface NavListProps {
+  isOpenMenu: boolean
+}
 
-export const NavList = (): JSX.Element => {
+export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => {
   const { route } = useRouter()
   const aboveTablet = useMediaQuery(above.tabletM)
   const render = renderNavData(route)
@@ -54,6 +58,8 @@ export const NavList = (): JSX.Element => {
   return aboveTablet ? (
     <NavListStyles data-testid="layout-nav-list">{render(navData)}</NavListStyles>
   ) : (
-    <MobileList>{render(navData)}</MobileList>
+    <Fade isAnimated={isOpenMenu}>
+      <MobileList>{render(navData)}</MobileList>
+    </Fade>
   )
 }

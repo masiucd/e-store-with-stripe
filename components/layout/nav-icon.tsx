@@ -18,10 +18,12 @@ const Wrapper = styled.button`
     border-radius: var(--border-radius-m);
   }
 `
-
-export const NavIcon = (): JSX.Element => {
+interface NavIconProps {
+  toggle: () => void
+}
+export const NavIcon = ({ toggle }: NavIconProps): JSX.Element => {
   return (
-    <Wrapper>
+    <Wrapper onClick={toggle}>
       <div className="nav-icon-part"></div>
       <div className="nav-icon-part"></div>
       <div className="nav-icon-part"></div>
