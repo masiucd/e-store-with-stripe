@@ -7,8 +7,10 @@ import { useRouter } from "next/router"
 import { above } from "@utils/media-query"
 import { useMediaQuery } from "@hooks/media-query"
 import Fade from "@components/animated/fade"
+import { motion } from "framer-motion"
+import { css } from "@emotion/css"
 
-const NavListStyles = styled.ul`
+const NavListStyles = styled(motion.ul)`
   display: flex;
   flex-basis: 50%;
   justify-content: space-between;
@@ -16,6 +18,22 @@ const NavListStyles = styled.ul`
   li {
     a {
       font-size: 1.2rem;
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 0.2rem;
+        background-color: var(--p);
+        width: 0;
+        transition: var(--transition-s);
+      }
+      &:hover {
+        &::after {
+          width: 100%;
+        }
+      }
     }
   }
   .active {
@@ -35,15 +53,59 @@ const NavListStyles = styled.ul`
     }
   }
 `
-const MobileList = styled(NavListStyles)``
+const MobileList = styled(NavListStyles)`
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+
+  li {
+    a {
+      font-size: 3rem;
+      color: var(--white);
+    }
+  }
+
+  .active {
+    a {
+      position: relative;
+      &::before {
+        content: "";
+        top: 3px;
+        left: -12px;
+        width: 30%;
+      }
+    }
+  }
+`
+
+const fadeStyles = css`
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: var(--red);
+  height: 100%;
+  z-index: 5;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  display: flex;
+  align-items: center;
+`
 
 const renderNavData = (route: string) => (xs: NavData[]) =>
   xs.map(a => (
-    <li key={a.name} className={route.slice(1) === a.name ? "active" : ""}>
+    <motion.li
+      key={a.name}
+      className={route.slice(1) === a.name ? "active" : ""}
+      whileHover={{ scale: 1.2, rotate: 3 }}
+    >
       <Link href={`${a.path}`}>
         <a>{a.name}</a>
       </Link>
-    </li>
+    </motion.li>
   ))
 
 interface NavListProps {
@@ -58,7 +120,15 @@ export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => 
   return aboveTablet ? (
     <NavListStyles data-testid="layout-nav-list">{render(navData)}</NavListStyles>
   ) : (
-    <Fade isAnimated={isOpenMenu}>
+    <Fade
+      isAnimated={isOpenMenu}
+      className={fadeStyles}
+      options={{
+        initial: { x: 100 },
+        exit: { x: 100 },
+        animate: { x: 0 },
+      }}
+    >
       <MobileList>{render(navData)}</MobileList>
     </Fade>
   )

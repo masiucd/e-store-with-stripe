@@ -13,6 +13,7 @@ interface FadeProps {
     exit?: Record<string, number | string | Record<string, string | number>>
     transition?: Record<string, number | string>
   }
+  layout?: boolean
 }
 
 const Fade: React.FC<FadeProps> = ({
@@ -21,17 +22,18 @@ const Fade: React.FC<FadeProps> = ({
   options,
   className,
   exitBeforeEnter,
+  layout,
 }) => {
   return (
     <AnimatePresence exitBeforeEnter={exitBeforeEnter ? exitBeforeEnter : false}>
       {isAnimated && (
         <motion.section
-          layout
+          layout={layout && layout}
           className={cx(className, "fade")}
           initial={{ opacity: 0, ...options?.initial }}
           animate={{ opacity: 1, ...options?.animate }}
           exit={{ opacity: 0, ...options?.exit }}
-          transition={{ ...options?.transition }}
+          transition={{ duration: 0.4, ...options?.transition }}
         >
           {children}
         </motion.section>

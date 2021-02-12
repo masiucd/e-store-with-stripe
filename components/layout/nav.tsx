@@ -22,10 +22,10 @@ export const Nav = (): JSX.Element => {
 
   return (
     <NavWrapper>
-      {!aboveTablet && <NavIcon toggle={toggleOpenMenu} />}
+      {!aboveTablet && <NavIcon toggle={toggleOpenMenu} isOpenMenu={isOpenMenu} />}
       <Link href="/">
         <a className="nav-title">
-          <Image src="/ra.svg" width={200} height="100%" />
+          <Image src="/logo-1.svg" width={200} height="100%" />
         </a>
       </Link>
       <NavList isOpenMenu={isOpenMenu} />
