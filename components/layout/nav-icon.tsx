@@ -14,7 +14,7 @@ const Wrapper = styled.button<WrapperProps>`
   outline: none;
   z-index: 10;
   .nav-icon-part {
-    height: 0.2rem;
+    height: 0.14rem;
     background-color: ${({ isOpenMenu }) => (isOpenMenu ? "var(--btn-text)" : "var(--headline)")};
     width: 3rem;
     padding: 0.1rem;
@@ -24,13 +24,15 @@ const Wrapper = styled.button<WrapperProps>`
     transition: var(--transition-s);
   }
   .nav-icon-part:nth-of-type(1) {
-    ${({ isOpenMenu }) => (isOpenMenu ? `top: 10px; transform: rotate(-45deg);` : "")};
+    ${({ isOpenMenu }) =>
+      isOpenMenu ? `top: 10px; transform: rotate(-45deg); width: 3rem; ` : "width: 2.9rem;"};
   }
   .nav-icon-part:nth-of-type(2) {
     ${({ isOpenMenu }) => (isOpenMenu ? `display:none` : "")};
   }
   .nav-icon-part:nth-of-type(3) {
-    ${({ isOpenMenu }) => (isOpenMenu ? `transform: rotate(45deg);` : "")};
+    ${({ isOpenMenu }) =>
+      isOpenMenu ? `transform: rotate(45deg); width:3rem;` : "width: 2.75rem;"};
   }
 `
 

@@ -9,7 +9,6 @@ import { NavIcon } from "./nav-icon"
 import { useToggle } from "@hooks/toggle"
 
 const NavWrapper = styled.nav`
-  border: 1px solid #000;
   display: flex;
   justify-content: space-between;
   align-items: center;

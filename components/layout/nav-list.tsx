@@ -9,6 +9,7 @@ import { useMediaQuery } from "@hooks/media-query"
 import Fade from "@components/animated/fade"
 import { motion } from "framer-motion"
 import { css } from "@emotion/css"
+import Image from "next/image"
 
 const NavListStyles = styled(motion.ul)`
   display: flex;
@@ -69,9 +70,7 @@ const MobileList = styled(NavListStyles)`
 
   .active {
     a {
-      position: relative;
       &::before {
-        content: "";
         top: 3px;
         left: -12px;
         width: 30%;
@@ -118,7 +117,12 @@ export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => 
   const render = renderNavData(route)
 
   return aboveTablet ? (
-    <NavListStyles data-testid="layout-nav-list">{render(navData)}</NavListStyles>
+    <NavListStyles data-testid="layout-nav-list">
+      {render(navData)}{" "}
+      <li>
+        <Image src="/cart.svg" width={30} height={30} />
+      </li>
+    </NavListStyles>
   ) : (
     <Fade
       isAnimated={isOpenMenu}
@@ -129,7 +133,12 @@ export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => 
         animate: { x: 0 },
       }}
     >
-      <MobileList>{render(navData)}</MobileList>
+      <MobileList>
+        {render(navData)}
+        <li>
+          <Image src="/cart.svg" width={30} height={30} />
+        </li>
+      </MobileList>
     </Fade>
   )
 }
