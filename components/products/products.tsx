@@ -18,13 +18,13 @@ export const Products = (): JSX.Element => {
 
   return (
     <ProductsGrid
-      initial={{ opacity: 0, x: -100, rotate: -10 }}
-      animate={{ opacity: 1, x: 0, rotate: 0 }}
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
       transition={{
         type: "spring",
-        stiffness: 160,
+        stiffness: 20,
         damping: 20,
-        delay: 0.4,
+        duration: 0.2,
       }}
     >
       {shoesData.map(shoe => (

@@ -15,3 +15,7 @@ export interface MediaQueryListFallBack extends MediaQueryList {
   matches: boolean
   onchange: null
 }
+export interface SocialData {
+  name: string
+  url: string
+}

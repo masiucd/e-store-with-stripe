@@ -1,4 +1,5 @@
 import { css, cx } from "@emotion/css"
+import { above } from "@utils/media-query"
 import React from "react"
 
 interface TitleProps {
@@ -9,9 +10,16 @@ interface TitleProps {
 
 const titleStyles = css`
   display: flex;
+  flex-flow: column wrap;
   justify-content: center;
+  align-items: center;
+
   h1 {
     position: relative;
+    font-size: var(--h3);
+    @media ${above.tabletM} {
+      font-size: var(--h1);
+    }
     &:after {
       content: "";
       position: absolute;
@@ -26,11 +34,12 @@ const titleStyles = css`
   }
 `
 
-const Title: React.FC<TitleProps> = ({ className, title, subTitle }) => {
+const Title: React.FC<TitleProps> = ({ className, title, subTitle, children }) => {
   return (
     <section className={cx(titleStyles, className, "main-title")}>
       <h1>{title}</h1>
       {Boolean(subTitle) && <h3>{subTitle}</h3>}
+      {children}
     </section>
   )
 }
