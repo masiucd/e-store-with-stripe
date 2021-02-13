@@ -1,30 +1,51 @@
 [
   {
-    "id": "price_1IJMT9CYzbrCXwtlL1lNv50M",
+    "id": "prod_IvCsRkLfjNqKly",
     "title": "fast-nike",
     "image": "/shoes/shoe-1.jpg",
     "description": "run fast with nike",
     "price": 550.0
   },
   {
-    "id": "price_1IJMTqCYzbrCXwtl91mljOJq",
-    "title": "nike free-run",
+    "id": "prod_IvCtVhbDlXeE9P",
+    "title": "nike free run",
     "image": "/shoes/shoe-2.jpg",
     "description": "cool nice looking shoes",
     "price": 345.0
   },
   {
-    "id": "price_1IJMUMCYzbrCXwtl2SpqLuO9",
-    "title": "nike-45",
+    "id": "prod_IvCuKiouOHsloE",
+    "title": "nike 45",
     "image": "/shoes/shoe-3.jpg",
     "description": "run like a pro",
     "price": 325.0
   },
   {
-    "id": "4",
+    "id": "prod_IvCuD5L4BWzEH4",
     "title": "nike bounce",
     "image": "/shoes/shoe-4.jpg",
     "description": "jump high, run fast and become a pro",
     "price": 725.0
+  },
+  {
+    "id": "prod_IwKjUAUVX1tqIe",
+    "title": "air max class",
+    "image": "/shoes/air-max-class.jpg",
+    "description": "classic air max class",
+    "price": 788.0
+  },
+  {
+    "id": "prod_IwKly0JHwQyhJr",
+    "title": "nike free",
+    "image": "/shoes/nike-jump.jpg",
+    "description": "run fast with lightweight shoes",
+    "price": 545.0
+  },
+  {
+    "id": "prod_IwKksBckEtnNSW",
+    "title": "asics one",
+    "image": "/shoes/asics-one.jpg",
+    "description": "run fast with asics",
+    "price": 545.0
   }
 ]

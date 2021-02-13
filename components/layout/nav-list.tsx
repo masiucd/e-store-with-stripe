@@ -18,7 +18,7 @@ const NavListStyles = styled(motion.ul)`
   padding: 0.5rem;
   li {
     a {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       position: relative;
       &:after {
         content: "";
@@ -60,6 +60,7 @@ const MobileList = styled(NavListStyles)`
   align-items: center;
   width: 90%;
   margin: 0 auto;
+  padding: 0.5rem;
 
   li {
     a {
@@ -100,6 +101,7 @@ const renderNavData = (route: string) => (xs: NavData[]) =>
       key={a.name}
       className={route.slice(1) === a.name ? "active" : ""}
       whileHover={{ scale: 1.2, rotate: 3 }}
+      whileFocus={{ scale: 1.2, rotate: 3 }}
     >
       <Link href={`${a.path}`}>
         <a>{a.name}</a>
@@ -119,7 +121,7 @@ export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => 
   return aboveTablet ? (
     <NavListStyles data-testid="layout-nav-list">
       {render(navData)}{" "}
-      <li>
+      <li data-testid="layout-card-icon" className="cart-icon">
         <Image src="/cart.svg" width={30} height={30} />
       </li>
     </NavListStyles>
@@ -135,7 +137,7 @@ export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => 
     >
       <MobileList>
         {render(navData)}
-        <li>
+        <li data-testid="layout-card-icon-mobile" className="cart-icon">
           <Image src="/cart.svg" width={30} height={30} />
         </li>
       </MobileList>

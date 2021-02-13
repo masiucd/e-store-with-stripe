@@ -14,12 +14,11 @@ const Wrapper = styled.button<WrapperProps>`
   outline: none;
   z-index: 10;
   .nav-icon-part {
-    height: 0.14rem;
+    height: 0.24rem;
     background-color: ${({ isOpenMenu }) => (isOpenMenu ? "var(--btn-text)" : "var(--headline)")};
     width: 3rem;
     padding: 0.1rem;
     margin-bottom: 0.2rem;
-    border-radius: var(--border-radius-m);
     position: relative;
     transition: var(--transition-s);
   }
