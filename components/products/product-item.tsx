@@ -6,6 +6,7 @@ import { css, cx } from "@emotion/css"
 import Link from "next/link"
 import { Button } from "@components/styles/button"
 import { motion } from "framer-motion"
+import { initializeCheckout } from "lib/payment"
 interface ProductItemProps {
   shoe: Shoe
 }
@@ -83,7 +84,21 @@ const ProductItem: React.FC<ProductItemProps> = ({ shoe }): JSX.Element => {
         <h4>{shoe.title}</h4>
         <p>{shoe.price}$</p>
         <p>{shoe.description}</p>
-        <Button type="button">add to cart</Button>
+        <Button
+          type="button"
+          onClick={() =>
+            initializeCheckout({
+              lineItems: [
+                {
+                  price: shoe.id,
+                  quantity: 1,
+                },
+              ],
+            })
+          }
+        >
+          add to cart
+        </Button>
       </div>
     </StyledProductItem>
   )

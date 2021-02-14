@@ -12,6 +12,7 @@
     "@emotion/react": "^11.1.5",
     "@emotion/server": "^11.0.0",
     "@emotion/styled": "^11.1.5",
+    "@stripe/stripe-js": "^1.12.1",
     "framer-motion": "^3.3.0",
     "next": "10.0.6",
     "react": "17.0.1",

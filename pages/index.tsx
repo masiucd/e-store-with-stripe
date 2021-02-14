@@ -6,8 +6,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 const wrapperStyles = css`
-  /* min-height: 75vh; */
-
   padding-bottom: 2.5rem; /* Footer height */
 `
 
