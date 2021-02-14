@@ -1,13 +1,13 @@
-import TitleWrapper from "@components/common/title";
-import { Button } from "@components/styles/button";
-import { css, cx } from "@emotion/css";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import TitleWrapper from "@components/common/title"
+import { Button } from "@components/styles/button"
+import { css, cx } from "@emotion/css"
+import Head from "next/head"
+import Image from "next/image"
+import Link from "next/link"
 
 const wrapperStyles = css`
   padding-bottom: 2.5rem; /* Footer height */
-`;
+`
 
 export default function Home(): JSX.Element {
   return (
@@ -27,5 +27,5 @@ export default function Home(): JSX.Element {
         <Image src="/jogging.svg" width={1000} height={1000} />
       </section>
     </>
-  );
+  )
 }

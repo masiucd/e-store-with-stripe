@@ -86,16 +86,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ shoe }): JSX.Element => {
         <p>{shoe.description}</p>
         <Button
           type="button"
-          onClick={() =>
-            initializeCheckout({
-              lineItems: [
-                {
-                  price: shoe.id,
-                  quantity: 1,
-                },
-              ],
-            })
-          }
+          onClick={() => initializeCheckout({ lineItems: [{ price: shoe.id, quantity: 1 }] })}
         >
           add to cart
         </Button>
