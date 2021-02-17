@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Button } from "@components/styles/button"
 import { motion } from "framer-motion"
 import { initializeCheckout } from "lib/payment"
+import { useCartDispatch } from "@context/cart/cart-provider"
 interface ProductItemProps {
   shoe: Shoe
 }
@@ -67,6 +68,8 @@ const bodyStyles = css`
 `
 
 const ProductItem: React.FC<ProductItemProps> = ({ shoe }): JSX.Element => {
+  const dispatch = useCartDispatch()
+
   return (
     <StyledProductItem whileHover={{ scale: 1.0353, zIndex: 10, rotate: 2, position: "relative" }}>
       <Link href="/">
@@ -86,7 +89,11 @@ const ProductItem: React.FC<ProductItemProps> = ({ shoe }): JSX.Element => {
         <p>{shoe.description}</p>
         <Button
           type="button"
-          onClick={() => initializeCheckout({ lineItems: [{ price: shoe.id, quantity: 1 }] })}
+          onClick={() => {
+            dispatch({ type: "ADD_TO_CART", payload: shoe })
+            // TODO: Add to cart here
+            // initializeCheckout({ lineItems: [{ price: shoe.id, quantity: 1 }] })
+          }}
         >
           add to cart
         </Button>

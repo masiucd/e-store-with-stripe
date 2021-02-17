@@ -4,6 +4,11 @@ export interface Shoe {
   image: string
   description: string
   price: number
+  quantity?: number
+}
+
+export interface CartItem extends Shoe {
+  quantity: number
 }
 export interface NavData {
   name: string
@@ -19,3 +24,5 @@ export interface SocialData {
   name: string
   url: string
 }
+
+export type Status = "idle" | "pending" | "resolved" | "rejected"

@@ -4,6 +4,7 @@ import { Shoe } from "@utils/types"
 import styled from "@emotion/styled"
 import ProductItem from "./product-item"
 import { motion } from "framer-motion"
+import { useCartState } from "@context/cart/cart-provider"
 
 const ProductsGrid = styled(motion.ul)`
   display: grid;
@@ -15,7 +16,9 @@ const ProductsGrid = styled(motion.ul)`
 
 export const Products = (): JSX.Element => {
   const shoesData = products as Array<Shoe>
-
+  // TODO: DELETE
+  const { cart } = useCartState()
+  console.log(cart)
   return (
     <ProductsGrid
       initial={{ opacity: 0, x: -100 }}
@@ -27,7 +30,7 @@ export const Products = (): JSX.Element => {
         duration: 0.2,
       }}
     >
-      {shoesData.map(shoe => (
+      {shoesData.map((shoe) => (
         <ProductItem key={shoe.id} shoe={shoe} />
       ))}
     </ProductsGrid>
