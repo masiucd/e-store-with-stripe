@@ -1,22 +1,26 @@
 import { Shoe } from "@utils/types"
 
-const getCart = (cart: Array<Shoe>) => {
-  return cart
-}
+const isItemTheSame = (cart: Shoe[], newCartItemToAdd: Shoe): Shoe | undefined =>
+  cart.find((item) => item.id === newCartItemToAdd.id)
 
-export const addItemToCart = (currentCart: Array<Shoe>, cartItemToAdd: Shoe): Shoe[] => {
-  // is there already teh same item in the cart?
-  const isThereAlreadyCartItemToAdd = currentCart.find((item) => item.id === cartItemToAdd.id)
+const increaseQuantity = (cart: Shoe[], cartItem: Shoe): Shoe[] =>
+  cart.map((item) => ({ ...item, quantity: cartItem.quantity ? cartItem.quantity + 1 : 0 }))
 
-  // if true then take the quantity of the item and increase it by one
-  if (isThereAlreadyCartItemToAdd) {
-    return currentCart.map((item) =>
-      item.id === cartItemToAdd.id
-        ? { ...item, quantity: item.quantity ? item.quantity + 1 : 0 }
-        : item
-    )
+export const addItemToCart = (cart: Shoe[], newCartItemToAdd: Shoe): Shoe[] => {
+  const doesCartItemToAddExistInTheCart = isItemTheSame(cart, newCartItemToAdd)
+
+  if (doesCartItemToAddExistInTheCart) {
+    return increaseQuantity(cart, doesCartItemToAddExistInTheCart)
   }
 
-  // else just add it to the cart with quantity of one
-  return [...currentCart, { ...cartItemToAdd, quantity: 1 }]
+  return [...cart, { ...newCartItemToAdd, quantity: 1 }]
+}
+
+export const calculateItemsInCart = (cart: Shoe[]) =>
+  cart.reduce((accumulator, { quantity }) => accumulator + quantity!, 0)
+
+export const calculateTotalCartPrice = (cart: Shoe[]): number => {
+  return cart.reduce((a, b: Shoe) => {
+    return a + b.price * b.quantity!
+  }, 0)
 }
