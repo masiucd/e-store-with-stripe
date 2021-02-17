@@ -1,5 +1,9 @@
 import { Shoe } from "@utils/types"
 
+const getCart = (cart: Array<Shoe>) => {
+  return cart
+}
+
 export const addItemToCart = (currentCart: Array<Shoe>, cartItemToAdd: Shoe): Shoe[] => {
   // is there already teh same item in the cart?
   const isThereAlreadyCartItemToAdd = currentCart.find((item) => item.id === cartItemToAdd.id)
