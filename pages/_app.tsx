@@ -1,13 +1,20 @@
 import type { AppProps } from "next/app"
-import Layout from "@components/layout/layout"
 import { CartProvider } from "@context/cart/cart-provider"
+import { motion } from "framer-motion"
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
+  console.log("router", router)
   return (
     <CartProvider>
-      <Layout>
+      <motion.section
+        className="app-wrapper"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ backgroundColor: "#fff", opacity: 0 }}
+        key={router.route}
+      >
         <Component {...pageProps} />
-      </Layout>
+      </motion.section>
     </CartProvider>
   )
 }

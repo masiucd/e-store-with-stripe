@@ -1,9 +1,10 @@
 import TitleWrapper from "@components/common/title"
+import Layout from "@components/layout/layout"
 import { Button } from "@components/styles/button"
 import { css, cx } from "@emotion/css"
-import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
+import React from "react"
 
 const wrapperStyles = css`
   padding-bottom: 2.5rem; /* Footer height */
@@ -11,11 +12,7 @@ const wrapperStyles = css`
 
 export default function Home(): JSX.Element {
   return (
-    <>
-      <Head>
-        <title>Runner addict</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout>
       <section className={cx(wrapperStyles, "section home-section-wrapper")}>
         <TitleWrapper title="Welcome to" subTitle="Runners addict">
           <Link href="/products">
@@ -26,6 +23,6 @@ export default function Home(): JSX.Element {
         </TitleWrapper>
         <Image src="/jogging.svg" width={1000} height={1000} />
       </section>
-    </>
+    </Layout>
   )
 }

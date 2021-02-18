@@ -150,6 +150,13 @@ const GlobalStyles = (): JSX.Element => (
       ul {
         list-style: none;
       }
+
+      .btn-reset {
+        border: none;
+        background: none;
+        outline: none;
+        cursor: pointer;
+      }
     `}
   />
 )

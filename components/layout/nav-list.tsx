@@ -10,19 +10,19 @@ import Fade from "@components/animated/fade"
 import { motion } from "framer-motion"
 import { css } from "@emotion/css"
 import Image from "next/image"
-import { useCartState } from "@context/cart/cart-provider"
 import { calculateItemsInCart } from "@context/cart/cart-functions"
-import { useToggle } from "@hooks/toggle"
-import { MainCart } from "@components/cart/main-cart"
 
 const NavListStyles = styled(motion.ul)`
   display: flex;
   flex-basis: 50%;
   justify-content: space-between;
   padding: 0.5rem;
+
   li {
+    &:not(:last-child) {
+    }
     a {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       position: relative;
       &:after {
         content: "";
@@ -120,7 +120,7 @@ const renderNavData = (route: string) => (xs: NavData[]) =>
     <motion.li
       key={a.name}
       className={route.slice(1) === a.name ? "active" : ""}
-      whileHover={{ scale: 1.2, rotate: 3 }}
+      whileHover={{ scale: [1.2, 1.4, 1.2], rotate: [0, 5, 0] }}
       whileFocus={{ scale: 1.2, rotate: 3 }}
     >
       <Link href={`${a.path}`}>
@@ -168,9 +168,11 @@ export const NavList: React.FC<NavListProps> = ({
     >
       <MobileList>
         {render(navData)}
-        <button data-testid="layout-card-icon-mobile" className="cart-icon cart-icon-small">
-          <Image src="/cart.svg" width={30} height={30} />
-        </button>
+        <li data-testid="layout-card-icon-mobile" className="cart-icon cart-icon-small">
+          <Link href="/cart">
+            <a>cart</a>
+          </Link>
+        </li>
       </MobileList>
     </Fade>
   )

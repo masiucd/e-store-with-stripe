@@ -9,6 +9,8 @@ import { NavIcon } from "./nav-icon"
 import { useToggle } from "@hooks/toggle"
 import { MainCart } from "@components/cart/main-cart"
 import { useCartState } from "@context/cart/cart-provider"
+import Fade from "@components/animated/fade"
+import { css } from "@emotion/css"
 
 const NavWrapper = styled.nav`
   display: flex;
@@ -17,10 +19,26 @@ const NavWrapper = styled.nav`
   position: relative;
 `
 
+const cartStyles = css`
+  & {
+    top: 1rem;
+    right: 0;
+    position: fixed;
+    background-color: var(--background);
+    box-shadow: var(--sh-lg);
+    width: 35rem;
+    min-height: 10rem;
+    padding: 1rem;
+    border-radius: var(--border-radius-m);
+    z-index: 20;
+    border: 2px solid var(--secondary);
+  }
+`
+
 export const Nav = (): JSX.Element => {
   const aboveTablet = useMediaQuery(above.tabletM)
   const { on: isOpenMenu, toggle: toggleOpenMenu } = useToggle()
-  const { on: isCartOpen, toggle: toggleIsCartOpen } = useToggle()
+  const { on: isCartOpen, toggle: toggleIsCartOpen, onToFalse: closeCart } = useToggle()
   const { cart } = useCartState()
 
   return (
@@ -32,7 +50,12 @@ export const Nav = (): JSX.Element => {
         </a>
       </Link>
       <NavList isOpenMenu={isOpenMenu} toggleIsCartOpen={toggleIsCartOpen} cart={cart} />
-      {isCartOpen && <MainCart cart={cart} />}
+
+      {aboveTablet && (
+        <Fade isAnimated={isCartOpen} className={cartStyles}>
+          <MainCart cart={cart} closeCart={closeCart} />
+        </Fade>
+      )}
     </NavWrapper>
   )
 }
