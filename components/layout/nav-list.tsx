@@ -1,6 +1,6 @@
 import React from "react"
 import navData from "@data/nav-data.json"
-import { NavData } from "@utils/types"
+import { NavData, Shoe } from "@utils/types"
 import Link from "next/link"
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
@@ -10,6 +10,10 @@ import Fade from "@components/animated/fade"
 import { motion } from "framer-motion"
 import { css } from "@emotion/css"
 import Image from "next/image"
+import { useCartState } from "@context/cart/cart-provider"
+import { calculateItemsInCart } from "@context/cart/cart-functions"
+import { useToggle } from "@hooks/toggle"
+import { MainCart } from "@components/cart/main-cart"
 
 const NavListStyles = styled(motion.ul)`
   display: flex;
@@ -53,6 +57,17 @@ const NavListStyles = styled(motion.ul)`
       }
     }
   }
+
+  .cart-icon {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  .cart-icon-large {
+    display: flex;
+  }
 `
 const MobileList = styled(NavListStyles)`
   flex-flow: column wrap;
@@ -95,8 +110,13 @@ const fadeStyles = css`
   align-items: center;
 `
 
+const CartItemsDisplay = styled.span`
+  font-size: 1.3rem;
+  padding-left: 0.5rem;
+`
+
 const renderNavData = (route: string) => (xs: NavData[]) =>
-  xs.map(a => (
+  xs.map((a) => (
     <motion.li
       key={a.name}
       className={route.slice(1) === a.name ? "active" : ""}
@@ -111,9 +131,15 @@ const renderNavData = (route: string) => (xs: NavData[]) =>
 
 interface NavListProps {
   isOpenMenu: boolean
+  toggleIsCartOpen: () => void
+  cart: Shoe[]
 }
 
-export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => {
+export const NavList: React.FC<NavListProps> = ({
+  isOpenMenu,
+  toggleIsCartOpen,
+  cart,
+}): JSX.Element => {
   const { route } = useRouter()
   const aboveTablet = useMediaQuery(above.tabletM)
   const render = renderNavData(route)
@@ -121,9 +147,14 @@ export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => 
   return aboveTablet ? (
     <NavListStyles data-testid="layout-nav-list">
       {render(navData)}{" "}
-      <li data-testid="layout-card-icon" className="cart-icon">
+      <button
+        data-testid="layout-card-icon"
+        className="cart-icon cart-icon-large"
+        onClick={toggleIsCartOpen}
+      >
         <Image src="/cart.svg" width={30} height={30} />
-      </li>
+        {cart.length > 0 && <CartItemsDisplay>{calculateItemsInCart(cart)}</CartItemsDisplay>}
+      </button>
     </NavListStyles>
   ) : (
     <Fade
@@ -137,9 +168,9 @@ export const NavList: React.FC<NavListProps> = ({ isOpenMenu }): JSX.Element => 
     >
       <MobileList>
         {render(navData)}
-        <li data-testid="layout-card-icon-mobile" className="cart-icon">
+        <button data-testid="layout-card-icon-mobile" className="cart-icon cart-icon-small">
           <Image src="/cart.svg" width={30} height={30} />
-        </li>
+        </button>
       </MobileList>
     </Fade>
   )

@@ -4,7 +4,7 @@ const isItemTheSame = (cart: Shoe[], newCartItemToAdd: Shoe): Shoe | undefined =
   cart.find((item) => item.id === newCartItemToAdd.id)
 
 const increaseQuantity = (cart: Shoe[], cartItem: Shoe): Shoe[] =>
-  cart.map((item) => ({ ...item, quantity: cartItem.quantity ? cartItem.quantity + 1 : 0 }))
+  cart.map((item) => (item.id === cartItem.id ? { ...item, quantity: item.quantity! + 1 } : item))
 
 export const addItemToCart = (cart: Shoe[], newCartItemToAdd: Shoe): Shoe[] => {
   const doesCartItemToAddExistInTheCart = isItemTheSame(cart, newCartItemToAdd)

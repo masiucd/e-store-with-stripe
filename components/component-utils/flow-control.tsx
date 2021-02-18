@@ -5,7 +5,7 @@ interface IFProps {
   children: React.ReactNode
 }
 
-function IF({ condition, children }: IFProps) {
+function FlowControl({ condition, children }: IFProps): React.ReactNode {
   return condition ? children : null
 }
-export default IF
+export default FlowControl

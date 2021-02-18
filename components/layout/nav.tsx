@@ -7,6 +7,8 @@ import { above } from "@utils/media-query"
 import { useMediaQuery } from "@hooks/media-query"
 import { NavIcon } from "./nav-icon"
 import { useToggle } from "@hooks/toggle"
+import { MainCart } from "@components/cart/main-cart"
+import { useCartState } from "@context/cart/cart-provider"
 
 const NavWrapper = styled.nav`
   display: flex;
@@ -18,6 +20,8 @@ const NavWrapper = styled.nav`
 export const Nav = (): JSX.Element => {
   const aboveTablet = useMediaQuery(above.tabletM)
   const { on: isOpenMenu, toggle: toggleOpenMenu } = useToggle()
+  const { on: isCartOpen, toggle: toggleIsCartOpen } = useToggle()
+  const { cart } = useCartState()
 
   return (
     <NavWrapper>
@@ -27,7 +31,8 @@ export const Nav = (): JSX.Element => {
           <Image src="/logo-1.svg" width={200} height="100%" />
         </a>
       </Link>
-      <NavList isOpenMenu={isOpenMenu} />
+      <NavList isOpenMenu={isOpenMenu} toggleIsCartOpen={toggleIsCartOpen} cart={cart} />
+      {isCartOpen && <MainCart cart={cart} />}
     </NavWrapper>
   )
 }

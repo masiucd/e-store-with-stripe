@@ -6,7 +6,6 @@ import { css, cx } from "@emotion/css"
 import Link from "next/link"
 import { Button } from "@components/styles/button"
 import { motion } from "framer-motion"
-import { initializeCheckout } from "lib/payment"
 import { useCartDispatch } from "@context/cart/cart-provider"
 interface ProductItemProps {
   shoe: Shoe

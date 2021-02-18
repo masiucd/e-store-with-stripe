@@ -8,7 +8,6 @@ const Main = styled.main`
   max-width: var(--app-width);
   margin: 0 auto;
   min-height: 80vh;
-  /* height: 100%; */
 `
 
 const Layout: React.FC = ({ children }) => {

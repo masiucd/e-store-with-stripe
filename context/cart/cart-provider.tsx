@@ -22,7 +22,6 @@ function cartReducer(state: CartState, action: Action): CartState {
     case "ADD_TO_CART":
       return {
         ...state,
-        // cart: [...state.cart, action.payload],
         cart: addItemToCart(state.cart, action.payload),
       }
     default:
