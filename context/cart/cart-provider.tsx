@@ -1,18 +1,6 @@
-import { Shoe, Status } from "@utils/types"
 import { createContext, useReducer, useContext } from "react"
-import { addItemToCart } from "./cart-functions"
-
-interface CartState {
-  cart: Array<Shoe>
-  status: Status
-}
-interface AddToCart {
-  type: "ADD_TO_CART"
-  payload: Shoe
-}
-
-type Action = AddToCart
-type Dispatch = (action: Action) => void
+import { addItemToCart, removeItemFromCart } from "./cart-functions"
+import { Action, CartState, Dispatch } from "./types"
 
 const cartStateContext = createContext<CartState | undefined>(undefined)
 const cartDispatchContext = createContext<Dispatch | undefined>(undefined)
@@ -23,6 +11,16 @@ function cartReducer(state: CartState, action: Action): CartState {
       return {
         ...state,
         cart: addItemToCart(state.cart, action.payload),
+      }
+    case "REMOVE_ITEM":
+      return {
+        ...state,
+        cart: removeItemFromCart(state.cart, action.payload),
+      }
+    case "DROP_SHOE":
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
       }
     default:
       return state

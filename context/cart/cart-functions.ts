@@ -16,7 +16,18 @@ export const addItemToCart = (cart: Shoe[], newCartItemToAdd: Shoe): Shoe[] => {
   return [...cart, { ...newCartItemToAdd, quantity: 1 }]
 }
 
-export const calculateItemsInCart = (cart: Shoe[]) =>
+export const removeItemFromCart = (cart: Shoe[], itemToRemove: Shoe): Shoe[] => {
+  const doesCartItemToAddExistInTheCart = isItemTheSame(cart, itemToRemove)
+  // What if the quantity is 1 ? then remove
+  if (doesCartItemToAddExistInTheCart) {
+    return cart.map((item) =>
+      item.id === itemToRemove.id ? { ...item, quantity: item.quantity! - 1 } : item
+    )
+  }
+  return [...cart]
+}
+
+export const calculateItemsInCart = (cart: Shoe[]): number =>
   cart.reduce((accumulator, { quantity }) => accumulator + quantity!, 0)
 
 export const calculateTotalCartPrice = (cart: Shoe[]): number => {

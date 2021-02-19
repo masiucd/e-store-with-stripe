@@ -151,6 +151,7 @@ export const NavList: React.FC<NavListProps> = ({
         data-testid="layout-card-icon"
         className="cart-icon cart-icon-large"
         onClick={toggleIsCartOpen}
+        disabled={Boolean(cart.length === 0)}
       >
         <Image src="/cart.svg" width={30} height={30} />
         {cart.length > 0 && <CartItemsDisplay>{calculateItemsInCart(cart)}</CartItemsDisplay>}
