@@ -3,7 +3,6 @@ import { CartProvider } from "@context/cart/cart-provider"
 import { motion } from "framer-motion"
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-  console.log("router", router)
   return (
     <CartProvider>
       <motion.section
