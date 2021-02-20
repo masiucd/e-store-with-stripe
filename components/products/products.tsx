@@ -1,9 +1,10 @@
 import React from "react"
-import products from "@data/products.json"
 import { Shoe } from "@utils/types"
 import styled from "@emotion/styled"
 import ProductItem from "./product-item"
 import { motion } from "framer-motion"
+import useSWR from "swr"
+import { fetcher, graphql } from "lib/fetcher"
 
 const ProductsGrid = styled(motion.ul)`
   display: grid;
@@ -14,7 +15,23 @@ const ProductsGrid = styled(motion.ul)`
 `
 
 export const Products = (): JSX.Element => {
-  const shoesData = products as Array<Shoe>
+  const { data: shoesList, error } = useSWR(
+    graphql`
+      {
+        shoes {
+          id
+          title
+          description
+          image
+          price
+        }
+      }
+    `,
+    fetcher
+  )
+
+  if (error) return <div>Failed to load</div>
+  if (!shoesList) return <div>Loading...</div>
 
   return (
     <ProductsGrid
@@ -27,7 +44,7 @@ export const Products = (): JSX.Element => {
         duration: 0.2,
       }}
     >
-      {shoesData.map((shoe) => (
+      {(shoesList as Shoe[]).map((shoe) => (
         <ProductItem key={shoe.id} shoe={shoe} />
       ))}
     </ProductsGrid>

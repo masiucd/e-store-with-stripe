@@ -7,7 +7,9 @@ import Link from "next/link"
 import React from "react"
 
 const wrapperStyles = css`
-  padding-bottom: 2.5rem; /* Footer height */
+  & {
+    padding-bottom: 2.5rem; /* Footer height */
+  }
 `
 
 export default function Home(): JSX.Element {

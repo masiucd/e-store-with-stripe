@@ -2,6 +2,8 @@ import type { AppProps } from "next/app"
 import { CartProvider } from "@context/cart/cart-provider"
 import { motion } from "framer-motion"
 
+// const client = new AplloC
+
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   return (
     <CartProvider>
