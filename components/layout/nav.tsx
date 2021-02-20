@@ -1,4 +1,3 @@
-import React from "react"
 import { NavList } from "./nav-list"
 import Link from "next/link"
 import styled from "@emotion/styled"

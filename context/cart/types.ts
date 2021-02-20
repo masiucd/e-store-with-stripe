@@ -18,5 +18,10 @@ interface DropShoe {
   payload: string
 }
 
-export type Action = AddToCart | RemoveItemFromCart | DropShoe
+interface UpdateCartState {
+  type: "UPDATE_CART"
+  payload: Shoe[]
+}
+
+export type Action = AddToCart | RemoveItemFromCart | DropShoe | UpdateCartState
 export type Dispatch = (action: Action) => void

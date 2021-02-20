@@ -1,4 +1,4 @@
-import { createContext, useReducer, useContext } from "react"
+import { createContext, useReducer, useContext, useEffect } from "react"
 import { addItemToCart, removeItemFromCart } from "./cart-functions"
 import { Action, CartState, Dispatch } from "./types"
 
@@ -21,6 +21,12 @@ function cartReducer(state: CartState, action: Action): CartState {
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
+      }
+
+    case "UPDATE_CART":
+      return {
+        ...state,
+        cart: action.payload,
       }
     default:
       return state
@@ -45,6 +51,20 @@ const useCartState = (): CartState => {
   if (!context) {
     throw new Error(`useCartContext must be used inside CartStateProvider`)
   }
+  const d = useCartDispatch()
+  useEffect(() => {
+    const dataFromStorage = typeof window !== "undefined" && localStorage.getItem("cart")
+    const data = dataFromStorage && JSON.parse(dataFromStorage)
+    if (data) {
+      d({ type: "UPDATE_CART", payload: data })
+    }
+  }, [d])
+
+  useEffect(() => {
+    const data = JSON.stringify(context.cart)
+    console.log(data)
+    typeof window !== "undefined" && localStorage.setItem("cart", data)
+  }, [context.cart])
   return context
 }
 

@@ -5,6 +5,7 @@ import ProductItem from "./product-item"
 import { motion } from "framer-motion"
 import useSWR from "swr"
 import { fetcher, graphql } from "lib/fetcher"
+import { Spinner } from "@components/animated/spinner"
 
 const ProductsGrid = styled(motion.ul)`
   display: grid;
@@ -31,22 +32,24 @@ export const Products = (): JSX.Element => {
   )
 
   if (error) return <div>Failed to load</div>
-  if (!shoesList) return <div>Loading...</div>
+  if (!shoesList) return <Spinner />
 
   return (
-    <ProductsGrid
-      initial={{ opacity: 0, x: -100 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{
-        type: "spring",
-        stiffness: 20,
-        damping: 20,
-        duration: 0.2,
-      }}
-    >
-      {(shoesList as Shoe[]).map((shoe) => (
-        <ProductItem key={shoe.id} shoe={shoe} />
-      ))}
-    </ProductsGrid>
+    <>
+      <ProductsGrid
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 20,
+          damping: 20,
+          duration: 0.2,
+        }}
+      >
+        {(shoesList as Shoe[]).map((shoe) => (
+          <ProductItem key={shoe.id} shoe={shoe} />
+        ))}
+      </ProductsGrid>
+    </>
   )
 }
