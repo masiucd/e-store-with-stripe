@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Button } from "@components/styles/button"
 import { motion } from "framer-motion"
 import { useCartDispatch } from "@context/cart/cart-provider"
+
 interface ProductItemProps {
   shoe: Shoe
 }
@@ -71,7 +72,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ shoe }): JSX.Element => {
 
   return (
     <StyledProductItem whileHover={{ scale: 1.0353, zIndex: 10, rotate: 2, position: "relative" }}>
-      <Link href="/">
+      <Link href={`/products/${shoe.slug}`}>
         <a>
           <Image
             className="foo"

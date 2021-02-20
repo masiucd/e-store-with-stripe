@@ -4,6 +4,7 @@
     "title": "fast-nike",
     "image": "/shoes/shoe-1.jpg",
     "description": "run fast with nike",
+    "slug": "fast-nike",
     "price": 550.0
   },
   {
@@ -11,6 +12,7 @@
     "title": "nike free run",
     "image": "/shoes/shoe-2.jpg",
     "description": "cool nice looking shoes",
+    "slug": "nike-free-run",
     "price": 345.0
   },
   {
@@ -18,6 +20,7 @@
     "title": "nike 45",
     "image": "/shoes/shoe-3.jpg",
     "description": "run like a pro",
+    "slug": "fast-45",
     "price": 325.0
   },
   {
@@ -25,6 +28,7 @@
     "title": "nike bounce",
     "image": "/shoes/shoe-4.jpg",
     "description": "jump high, run fast and become a pro",
+    "slug": "nike-bounce",
     "price": 725.0
   },
   {
@@ -32,6 +36,7 @@
     "title": "air max class",
     "image": "/shoes/air-max-class.jpg",
     "description": "classic air max class",
+    "slug": "air-max-class",
     "price": 788.0
   },
   {
@@ -39,6 +44,7 @@
     "title": "nike free",
     "image": "/shoes/nike-jump.jpg",
     "description": "run fast with lightweight shoes",
+    "slug": "nike-free",
     "price": 545.0
   },
   {
@@ -46,6 +52,7 @@
     "title": "asics one",
     "image": "/shoes/asics-one.jpg",
     "description": "run fast with asics",
+    "slug": "asics-one",
     "price": 545.0
   }
 ]

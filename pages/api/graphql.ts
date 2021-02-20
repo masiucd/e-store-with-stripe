@@ -10,6 +10,7 @@ const typeDefs = gql`
     title: String!
     image: String
     description: String!
+    slug: String!
     price: Int!
   }
 `
@@ -23,6 +24,7 @@ const resolvers = {
           title: "fast-nike",
           image: "/shoes/shoe-1.jpg",
           description: "run fast with nike",
+          slug: "fast-nike",
           price: 550,
         },
         {
@@ -30,6 +32,7 @@ const resolvers = {
           title: "nike free run",
           image: "/shoes/shoe-2.jpg",
           description: "cool nice looking shoes",
+          slug: "nike-free-run",
           price: 345,
         },
         {
@@ -37,6 +40,7 @@ const resolvers = {
           title: "nike 45",
           image: "/shoes/shoe-3.jpg",
           description: "run like a pro",
+          slug: "fast-45",
           price: 325,
         },
         {
@@ -44,6 +48,7 @@ const resolvers = {
           title: "nike bounce",
           image: "/shoes/shoe-4.jpg",
           description: "jump high, run fast and become a pro",
+          slug: "nike-bounce",
           price: 725,
         },
         {
@@ -51,6 +56,7 @@ const resolvers = {
           title: "air max class",
           image: "/shoes/air-max-class.jpg",
           description: "classic air max class",
+          slug: "air-max-class",
           price: 788,
         },
         {
@@ -58,6 +64,7 @@ const resolvers = {
           title: "nike free",
           image: "/shoes/nike-jump.jpg",
           description: "run fast with lightweight shoes",
+          slug: "nike-free",
           price: 545,
         },
         {
@@ -65,6 +72,7 @@ const resolvers = {
           title: "asics one",
           image: "/shoes/asics-one.jpg",
           description: "run fast with asics",
+          slug: "asics-one",
           price: 545,
         },
       ]

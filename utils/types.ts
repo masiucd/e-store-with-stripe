@@ -4,6 +4,7 @@ export interface Shoe {
   image: string
   description: string
   price: number
+  slug: string
   quantity?: number
 }
 

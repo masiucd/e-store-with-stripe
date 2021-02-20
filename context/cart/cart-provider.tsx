@@ -62,7 +62,7 @@ const useCartState = (): CartState => {
 
   useEffect(() => {
     const data = JSON.stringify(context.cart)
-    console.log(data)
+
     typeof window !== "undefined" && localStorage.setItem("cart", data)
   }, [context.cart])
   return context
