@@ -25,6 +25,7 @@ export const Products = (): JSX.Element => {
           description
           image
           price
+          slug
         }
       }
     `,

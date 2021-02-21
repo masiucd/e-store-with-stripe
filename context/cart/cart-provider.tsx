@@ -52,6 +52,7 @@ const useCartState = (): CartState => {
     throw new Error(`useCartContext must be used inside CartStateProvider`)
   }
   const d = useCartDispatch()
+
   useEffect(() => {
     const dataFromStorage = typeof window !== "undefined" && localStorage.getItem("cart")
     const data = dataFromStorage && JSON.parse(dataFromStorage)

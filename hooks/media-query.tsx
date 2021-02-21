@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
+import { useShouldRender } from "@hooks/should-render"
 
-const isOnClient = typeof window !== "undefined"
+// const isOnClient = typeof window !== "undefined"
 
 export const useMediaQuery = (query: string): boolean => {
   const [matches, setMatches] = useState(false)
+  const isMounted = useShouldRender()
 
   useEffect(() => {
-    const media = isOnClient ? window.matchMedia(query) : null
+    const media = isMounted ? window.matchMedia(query) : null
 
     if (media && matches !== media?.matches) {
       setMatches(media?.matches)
@@ -20,7 +22,7 @@ export const useMediaQuery = (query: string): boolean => {
     return () => {
       media?.removeEventListener("change", listener)
     }
-  }, [matches, query])
+  }, [isMounted, matches, query])
 
   return matches
 }
