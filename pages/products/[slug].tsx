@@ -18,7 +18,6 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const product = productsData.find((product) => product.slug === params?.slug)
-  console.log(product)
   return {
     props: {
       product,

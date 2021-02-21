@@ -26,4 +26,10 @@ export interface SocialData {
   url: string
 }
 
+export type ScrollDirection = "up" | "down" | "idle"
+export interface ScrollY {
+  y: number
+  scrollDirection: ScrollDirection
+}
+
 export type Status = "idle" | "pending" | "resolved" | "rejected"

@@ -30,46 +30,48 @@ const StyledProductItem = styled(motion.li)`
 `
 
 const bodyStyles = css`
-  padding: 1rem;
-  display: flex;
-  flex-flow: column wrap;
-  flex: 1;
+  & {
+    padding: 1rem;
+    display: flex;
+    flex-flow: column wrap;
+    flex: 1;
 
-  h4 {
-    position: relative;
-    display: inline-block;
-    &::before {
-      content: "";
-      top: -1px;
-      left: 0;
-      height: 0.4rem;
-      background-color: var(--highlight);
-      width: 50%;
-      position: absolute;
-      transform: skewX(10deg) skewY(2deg);
+    h4 {
+      position: relative;
+      display: inline-block;
+      &::before {
+        content: "";
+        top: -1px;
+        left: 0;
+        height: 0.4rem;
+        background-color: var(--highlight);
+        width: 50%;
+        position: absolute;
+        transform: skewX(10deg) skewY(2deg);
+      }
+      &::after {
+        content: "";
+        bottom: -3px;
+        left: 0;
+        height: 0.4rem;
+        background-color: var(--highlight);
+        width: 60%;
+        position: absolute;
+        transform: skewX(10deg) skewY(2deg);
+      }
     }
-    &::after {
-      content: "";
-      bottom: -3px;
-      left: 0;
-      height: 0.4rem;
-      background-color: var(--highlight);
-      width: 60%;
-      position: absolute;
-      transform: skewX(10deg) skewY(2deg);
+    p {
+      font-size: 1.5em;
     }
-  }
-  p {
-    font-size: 1.5em;
-  }
-  button {
-    margin-top: auto;
+    button {
+      margin-top: auto;
+    }
   }
 `
 
 const ProductItem: React.FC<ProductItemProps> = ({ shoe }): JSX.Element => {
   const dispatch = useCartDispatch()
-
+  console.log(shoe.slug)
   return (
     <StyledProductItem whileHover={{ scale: 1.0353, zIndex: 10, rotate: 2, position: "relative" }}>
       <Link href={`/products/${shoe.slug}`}>

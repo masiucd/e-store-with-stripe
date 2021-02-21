@@ -21,7 +21,7 @@ const resolvers = {
       return [
         {
           id: "price_1IJMT9CYzbrCXwtlL1lNv50M",
-          title: "fast-nike",
+          title: "fast nike",
           image: "/shoes/shoe-1.jpg",
           description: "run fast with nike",
           slug: "fast-nike",
