@@ -4,11 +4,11 @@
     "path": "/products"
   },
   {
-    "name": "about",
-    "path": "/about"
-  },
-  {
     "name": "contact",
     "path": "/contact"
+  },
+  {
+    "name": "orders",
+    "path": "/orders"
   }
 ]

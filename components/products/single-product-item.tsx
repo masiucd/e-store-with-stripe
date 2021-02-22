@@ -2,6 +2,7 @@ import { Button } from "@components/styles/button"
 import { useCartDispatch } from "@context/cart/cart-provider"
 import styled from "@emotion/styled"
 import { colors } from "@utils/colors"
+import { above } from "@utils/media-query"
 import { Shoe } from "@utils/types"
 import Image from "next/image"
 import React from "react"
@@ -12,8 +13,14 @@ interface SingleProductItem {
 const ProductStyles = styled.article`
   display: flex;
   height: 30rem;
-  justify-content: space-between;
   margin-top: 10rem;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  @media ${above.tabletXL} {
+    flex-direction: row;
+    justify-content: space-between;
+  }
   h3 {
     color: ${colors.purple};
     position: relative;

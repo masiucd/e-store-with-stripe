@@ -167,14 +167,7 @@ export const NavList: React.FC<NavListProps> = ({
         animate: { x: 0 },
       }}
     >
-      <MobileList>
-        {render(navData)}
-        <li data-testid="layout-card-icon-mobile" className="cart-icon cart-icon-small">
-          <Link href="/orders">
-            <a>cart</a>
-          </Link>
-        </li>
-      </MobileList>
+      <MobileList>{render(navData)}</MobileList>
     </Fade>
   )
 }
