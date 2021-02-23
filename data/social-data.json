@@ -1,14 +1,22 @@
 [
   {
     "name": "github",
-    "url": "https://github.com/masiucd"
+    "url": "https://github.com/masiucd",
+    "image": "run-1"
   },
   {
     "name": "twitter",
-    "url": "https://twitter.com/MasiuCD"
+    "url": "https://twitter.com/MasiuCD",
+    "image": "run-2"
   },
   {
     "name": "codepen",
-    "url": "https://codepen.io/legionista1994"
+    "url": "https://codepen.io/legionista1994",
+    "image": "run-3"
+  },
+  {
+    "name": "linkedin",
+    "url": "https://se.linkedin.com/in/marcell-ciszek",
+    "image": "run-4"
   }
 ]
