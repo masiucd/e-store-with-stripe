@@ -25,6 +25,25 @@ const DrawerSection = styled(motion.div)`
   box-shadow: var(--sh-xl);
   border-radius: var(--border-radius-m);
   border-top: 1px solid var(--highlight);
+  position: relative;
+  padding: 2rem;
+  button {
+    position: absolute;
+    right: 1rem;
+    top: -2rem;
+    font-size: 2rem;
+    background-color: var(--white);
+    padding: 0.3rem;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    border: var(--highlight) 2px solid;
+    transition: var(--transition-s);
+    &:hover {
+      background-color: var(--p);
+      color: var(--background);
+    }
+  }
 `
 const Shadow = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.4);
@@ -58,7 +77,9 @@ const Drawer: FC<drawerProps> = ({ isOn, setOnToFalse, children }) => {
               transition={{ damping: 25, type: "spring" }}
             >
               <DrawerSection>
-                <button onClick={setOnToFalse}>&#x2715;</button>
+                <button className="btn-reset" onClick={setOnToFalse}>
+                  &#x2715;
+                </button>
                 {children}
               </DrawerSection>
             </motion.div>
