@@ -7,6 +7,8 @@ const OrderWrapper = styled.section`
   min-height: 60vh;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
 `
 
 export const Main = (): JSX.Element => {
