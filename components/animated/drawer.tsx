@@ -1,3 +1,4 @@
+import { css, cx } from "@emotion/css"
 import styled from "@emotion/styled"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC } from "react"
@@ -9,7 +10,7 @@ interface drawerProps {
 
 const DrawWrapper = styled(motion.div)`
   position: fixed;
-  height: calc(100% - 13rem);
+  height: calc(100% - 8rem);
   bottom: 0;
   left: 0;
   z-index: 20;
@@ -27,22 +28,23 @@ const DrawerSection = styled(motion.div)`
   border-top: 1px solid var(--highlight);
   position: relative;
   padding: 2rem;
-  button {
-    position: absolute;
-    right: 1rem;
-    top: -2rem;
-    font-size: 2rem;
-    background-color: var(--white);
-    padding: 0.3rem;
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    border: var(--highlight) 2px solid;
-    transition: var(--transition-s);
-    &:hover {
-      background-color: var(--p);
-      color: var(--background);
-    }
+`
+
+const closeDrawerButtonStyles = css`
+  position: absolute;
+  right: 1rem;
+  top: -2rem;
+  font-size: 2rem;
+  background-color: var(--white);
+  padding: 0.3rem;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  border: var(--highlight) 2px solid;
+  transition: var(--transition-s);
+  &:hover {
+    background-color: var(--p);
+    color: var(--background);
   }
 `
 const Shadow = styled(motion.div)`
@@ -77,7 +79,10 @@ const Drawer: FC<drawerProps> = ({ isOn, setOnToFalse, children }) => {
               transition={{ damping: 25, type: "spring" }}
             >
               <DrawerSection>
-                <button className="btn-reset" onClick={setOnToFalse}>
+                <button
+                  className={cx(closeDrawerButtonStyles, "btn-reset close-drawer-btn")}
+                  onClick={setOnToFalse}
+                >
                   &#x2715;
                 </button>
                 {children}

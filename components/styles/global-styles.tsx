@@ -11,6 +11,7 @@ const GlobalStyles = (): JSX.Element => (
         --red: #e45858;
         --grey: #d1d1e9;
         --highlight-shadow: hsla(250, 80%, 60%, 0.49);
+        --red-shadow: rgba(228, 88, 88, 0.4);
 
         /* element color */
         --background: var(--white);
@@ -156,6 +157,7 @@ const GlobalStyles = (): JSX.Element => (
         background: none;
         outline: none;
         cursor: pointer;
+        transition: var(--transition-s);
       }
     `}
   />
