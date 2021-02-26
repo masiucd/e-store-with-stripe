@@ -73,7 +73,7 @@ export const OrderTable = ({ cart }: Props): JSX.Element => {
           {cart.map((item) => (
             <tr key={item.id}>
               <td>{item.title}</td>
-              <td>{item.price}</td>
+              <td>{item.price}$</td>
               <td>{item.quantity}</td>
             </tr>
           ))}

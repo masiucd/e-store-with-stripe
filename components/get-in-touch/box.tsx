@@ -2,6 +2,7 @@ import Fade from "@components/animated/fade"
 import { css } from "@emotion/css"
 import styled from "@emotion/styled"
 import { useToggle } from "@hooks/toggle"
+import { below } from "@utils/media-query"
 import { motion } from "framer-motion"
 import { FC } from "react"
 
@@ -31,6 +32,9 @@ const StyledBox = styled.div<StyledBoxProps>`
   margin-bottom: 1rem;
   background-size: cover;
   position: relative;
+  @media ${below.tablet} {
+    height: 1.4rem;
+  }
   &:after {
     content: "";
     background-color: rgba(5, 5, 5, 0.4);
@@ -48,6 +52,12 @@ const StyledBox = styled.div<StyledBoxProps>`
       background-color: var(--background);
       display: inline-block;
       border-radius: var(--border-radius-m);
+      @media ${below.tablet} {
+        height: 1rem;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+      }
     }
     span {
       color: var(--red);
@@ -61,6 +71,10 @@ const StyledBox = styled.div<StyledBoxProps>`
         background-color: var(--red-shadow);
         height: 1.1rem;
         transform: rotate(-4deg);
+        @media ${below.tablet} {
+          bottom: 4px;
+          height: 0.6rem;
+        }
       }
     }
   }

@@ -1,5 +1,6 @@
 import { css, cx } from "@emotion/css"
 import styled from "@emotion/styled"
+import { below } from "@utils/media-query"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC } from "react"
 
