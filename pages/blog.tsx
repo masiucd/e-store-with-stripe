@@ -1,11 +1,11 @@
 import Layout from "@components/layout/layout"
 import { NextPage } from "next"
 import TitleWrapper from "@components/common/title"
-import fs from "fs"
 import { GetStaticProps } from "next"
 import styled from "@emotion/styled"
 import { css } from "@emotion/css"
 import Post from "@components/post/post"
+import { postSlugs } from "@utils/mdx-utils"
 
 interface BlogPageProps {
   posts: string[]
@@ -37,10 +37,8 @@ const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = fs.readdirSync("posts").map((file) => file.replace(".mdx", ""))
-
   return {
-    props: { posts },
+    props: { posts: postSlugs },
   }
 }
 

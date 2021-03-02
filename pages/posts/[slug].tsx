@@ -1,19 +1,38 @@
 import Layout from "@components/layout/layout"
 import TitleWrapper from "@components/common/title"
-import { useRouter } from "next/router"
-import { GetStaticPaths, GetStaticProps } from "next"
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next"
 import path from "path"
 import fs from "fs"
+import matter from "gray-matter"
+import { POST_PATH } from "@utils/mdx-utils"
+import renderToString from "next-mdx-remote/render-to-string"
+import hydrate from "next-mdx-remote/hydrate"
+import Title from "@components/common/title"
+import Head from "next/head"
+import { FrontMatter, Source } from "@utils/types"
 
-interface PostPageProps {}
+interface PostPageProps {
+  source: Source
+  frontMatter: FrontMatter
+}
 
-const PostPage: React.FC<PostPageProps> = ({}) => {
-  const { query } = useRouter()
+const components = {
+  a: Title,
+  // It also works with dynamically-imported components, which is especially
+  // useful for conditionally loading components for certain routes.
+  // See the notes in README.md for more details.
+  // TestComponent: dynamic(() => import('../../components/TestComponent')),
+  Head,
+}
+
+const PostPage: React.FC<PostPageProps> = ({ source, frontMatter }) => {
+  const content = hydrate(source, { components })
 
   return (
     <Layout>
       <section>
-        <TitleWrapper title={`${query.slug}`} />
+        <TitleWrapper title={`${frontMatter.title}`} />
+        <main>{content}</main>
       </section>
     </Layout>
   )
@@ -30,14 +49,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const { slug } = ctx.params!
-  console.log(slug)
-  const content = fs.readFileSync(path.join("posts", `${slug}.mdx`), "utf-8")
-  console.log(content)
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+  const { params } = ctx
+
+  const contentText = fs.readFileSync(path.join(POST_PATH, `${params?.slug}.mdx`), "utf-8")
+  const { content, data: frontMatter } = matter(contentText)
+  const mdxSource = await renderToString(content, {
+    components,
+    // remark/rehype plugins goes in here
+    mdxOptions: {
+      remarkPlugins: [],
+      rehypePlugins: [],
+    },
+    scope: frontMatter,
+  })
 
   return {
-    props: { foo: "" },
+    props: { source: mdxSource, frontMatter },
   }
 }
 

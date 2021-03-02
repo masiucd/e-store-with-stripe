@@ -33,3 +33,16 @@ export interface ScrollY {
 }
 
 export type Status = "idle" | "pending" | "resolved" | "rejected"
+
+export interface FrontMatter {
+  title: string
+  date: string
+  author: string
+  except: string
+}
+
+export interface Source {
+  compiledSource: string
+  renderedOutput: string
+  scope: Record<string, string>
+}
