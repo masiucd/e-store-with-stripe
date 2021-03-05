@@ -8,6 +8,10 @@
     "path": "/contact"
   },
   {
+    "name": "blog",
+    "path": "/blog"
+  },
+  {
     "name": "orders",
     "path": "/orders"
   }

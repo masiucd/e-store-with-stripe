@@ -8,6 +8,7 @@ import { POST_PATH } from "@utils/mdx-utils"
 import renderToString from "next-mdx-remote/render-to-string"
 import hydrate from "next-mdx-remote/hydrate"
 import Title from "@components/common/title"
+import Counter from "@components/counter/main"
 import Head from "next/head"
 import { FrontMatter, Source } from "@utils/types"
 
@@ -17,7 +18,8 @@ interface PostPageProps {
 }
 
 const components = {
-  a: Title,
+  Title,
+  Counter,
   // It also works with dynamically-imported components, which is especially
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
