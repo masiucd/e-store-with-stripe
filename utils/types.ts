@@ -38,7 +38,8 @@ export interface FrontMatter {
   title: string
   date: string
   author: string
-  except: string
+  slug: string
+  excerpt: string
 }
 
 export interface Source {

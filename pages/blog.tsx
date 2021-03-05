@@ -5,15 +5,18 @@ import { GetStaticProps } from "next"
 import styled from "@emotion/styled"
 import { css } from "@emotion/css"
 import Post from "@components/post/post"
-import { postSlugs } from "@utils/mdx-utils"
+import { POST_PATH } from "@utils/mdx-utils"
+import fs from "fs"
+import path from "path"
+import matter from "gray-matter"
+import { FrontMatter } from "@utils/types"
 
 interface BlogPageProps {
-  posts: string[]
+  frontMatterList: FrontMatter[]
 }
 
 const PostsWrapper = styled.div`
   display: flex;
-  border: 1px solid #000;
   max-width: 50rem;
   margin: 0 auto 1rem auto;
   flex-flow: column wrap;
@@ -23,22 +26,29 @@ const titleStyles = css`
   margin-bottom: 2rem;
 `
 
-const BlogPage: NextPage<BlogPageProps> = ({ posts }) => {
-  return (
-    <Layout>
-      <TitleWrapper title="Posts" subTitle="running posts" className={titleStyles} />
-      <PostsWrapper>
-        {posts.map((post) => (
-          <Post key={post} slug={post} />
-        ))}
-      </PostsWrapper>
-    </Layout>
-  )
-}
+const BlogPage: NextPage<BlogPageProps> = ({ posts, frontMatterList }) => (
+  <Layout>
+    <TitleWrapper title="Posts" subTitle="running posts" className={titleStyles} />
+    <PostsWrapper>
+      {frontMatterList.map((post) => (
+        <Post key={post.slug} post={post} />
+      ))}
+    </PostsWrapper>
+  </Layout>
+)
 
 export const getStaticProps: GetStaticProps = async () => {
+  const posts = fs.readdirSync("posts")
+  const postsToString = posts.map((x) => fs.readFileSync(path.join(POST_PATH, `${x}`), "utf-8"))
+  const frontMatterList: FrontMatter[] = []
+
+  postsToString.forEach((p) => {
+    const { data: frontMatter } = matter(p)
+    frontMatterList.push(frontMatter as FrontMatter)
+  })
+
   return {
-    props: { posts: postSlugs },
+    props: { frontMatterList },
   }
 }
 
