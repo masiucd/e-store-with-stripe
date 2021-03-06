@@ -12,7 +12,7 @@ import matter from "gray-matter"
 import { FrontMatter } from "@utils/types"
 import useScroll from "@hooks/scroll"
 import { CategoryTable } from "@components/category-table/category-table"
-import { useState } from "react"
+import { ChangeEvent, useEffect, useCallback, useState } from "react"
 import { listOfKeys, getUniqueList } from "@utils/helpers"
 
 interface BlogPageProps {
@@ -31,17 +31,33 @@ const titleStyles = css`
 `
 
 const BlogPage: NextPage<BlogPageProps> = ({ frontMatterList }) => {
-  const [categories, setCategories] = useState<string[]>([])
-
+  const [categories, setCategories] = useState<Record<string, boolean>>({})
   const { data: posts } = useScroll({ list: frontMatterList })
 
   const listOfCategories = listOfKeys(frontMatterList)("category")
   const uniqueListFrontMatterList = getUniqueList(listOfCategories)
 
-  const handleCategory = (category: string) => {
-    setCategories((prev) => [...prev, category])
+  const handleCategory = (evt: ChangeEvent<HTMLInputElement>): void => {
+    const { name, checked } = evt.target
+    setCategories((p) => ({ ...p, [name]: checked }))
   }
-  console.log(categories)
+
+  useEffect(() => {
+    const init = () => {
+      const map: Record<string, boolean> = uniqueListFrontMatterList.reduce(
+        (obj: Record<string, boolean>, key: string) => {
+          if (!obj[key]) {
+            obj[key] = false
+          }
+          return obj
+        },
+        {}
+      )
+
+      setCategories(map)
+    }
+    init()
+  }, [])
 
   return (
     <Layout>

@@ -1,11 +1,11 @@
 import { resetButtonStyles } from "@components/styles/button"
 import { css } from "@emotion/css"
 import styled from "@emotion/styled"
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 
 interface CategoryProps {
   category: string
-  handleCategory: (category: string) => void
+  handleCategory: (evt: ChangeEvent<HTMLInputElement>) => void
 }
 
 const CateGoryItem = styled.li``
@@ -33,17 +33,8 @@ export const Category = ({ category, handleCategory }: CategoryProps): JSX.Eleme
   const [hasBeenClicked, setHasBeenClicked] = useState(false)
   return (
     <CateGoryItem>
-      <button
-        className={buttonStyles(hasBeenClicked)}
-        type="button"
-        aria-label={`category-${category}`}
-        onClick={() => {
-          handleCategory(category)
-          setHasBeenClicked((p) => !p)
-        }}
-      >
-        {category}
-      </button>
+      <label htmlFor={category}>{category}</label>
+      <input type="checkbox" name={category} id={category} />
     </CateGoryItem>
   )
 }

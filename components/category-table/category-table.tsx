@@ -1,8 +1,9 @@
 import { css } from "@emotion/css"
+import { ChangeEvent } from "react"
 import { Category } from "./category"
 interface CategoryTableProps {
   uniqueList: Array<string>
-  handleCategory: (category: string) => void
+  handleCategory: (evt: ChangeEvent<HTMLInputElement>) => void
 }
 const tableStyles = css`
   display: flex;
