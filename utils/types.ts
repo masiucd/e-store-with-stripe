@@ -39,6 +39,7 @@ export interface FrontMatter {
   date: string
   author: string
   slug: string
+  category: string
   excerpt: string
 }
 

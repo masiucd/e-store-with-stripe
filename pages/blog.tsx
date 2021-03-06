@@ -10,6 +10,8 @@ import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
 import { FrontMatter } from "@utils/types"
+import useScroll from "@hooks/scroll"
+import { CategoryTable } from "@components/category-table/category-table"
 
 interface BlogPageProps {
   frontMatterList: FrontMatter[]
@@ -26,16 +28,23 @@ const titleStyles = css`
   margin-bottom: 2rem;
 `
 
-const BlogPage: NextPage<BlogPageProps> = ({ posts, frontMatterList }) => (
-  <Layout>
-    <TitleWrapper title="Posts" subTitle="running posts" className={titleStyles} />
-    <PostsWrapper>
-      {frontMatterList.map((post) => (
-        <Post key={post.slug} post={post} />
-      ))}
-    </PostsWrapper>
-  </Layout>
-)
+const BlogPage: NextPage<BlogPageProps> = ({ frontMatterList }) => {
+  const { data: posts } = useScroll({ list: frontMatterList })
+
+  const xs = frontMatterList.map((x) => x.category).filter((c, i, arr) => arr.indexOf(c) === i)
+
+  return (
+    <Layout>
+      <TitleWrapper title="Posts" subTitle="running posts" className={titleStyles} />
+      <CategoryTable uniqueList={xs} />
+      <PostsWrapper>
+        {posts.map((post) => (
+          <Post key={post.slug} post={post} />
+        ))}
+      </PostsWrapper>
+    </Layout>
+  )
+}
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = fs.readdirSync("posts")
