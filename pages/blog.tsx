@@ -12,6 +12,8 @@ import matter from "gray-matter"
 import { FrontMatter } from "@utils/types"
 import useScroll from "@hooks/scroll"
 import { CategoryTable } from "@components/category-table/category-table"
+import { useState } from "react"
+import { listOfKeys, getUniqueList } from "@utils/helpers"
 
 interface BlogPageProps {
   frontMatterList: FrontMatter[]
@@ -29,14 +31,22 @@ const titleStyles = css`
 `
 
 const BlogPage: NextPage<BlogPageProps> = ({ frontMatterList }) => {
+  const [categories, setCategories] = useState<string[]>([])
+
   const { data: posts } = useScroll({ list: frontMatterList })
 
-  const xs = frontMatterList.map((x) => x.category).filter((c, i, arr) => arr.indexOf(c) === i)
+  const listOfCategories = listOfKeys(frontMatterList)("category")
+  const uniqueListFrontMatterList = getUniqueList(listOfCategories)
+
+  const handleCategory = (category: string) => {
+    setCategories((prev) => [...prev, category])
+  }
+  console.log(categories)
 
   return (
     <Layout>
       <TitleWrapper title="Posts" subTitle="running posts" className={titleStyles} />
-      <CategoryTable uniqueList={xs} />
+      <CategoryTable uniqueList={uniqueListFrontMatterList} handleCategory={handleCategory} />
       <PostsWrapper>
         {posts.map((post) => (
           <Post key={post.slug} post={post} />

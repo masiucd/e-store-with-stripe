@@ -48,3 +48,10 @@ export interface Source {
   renderedOutput: string
   scope: Record<string, string>
 }
+export type ArityOneFn = (arg: any) => any
+export type PickLastInTuple<T extends any[]> = T extends [...rest: infer U, argn: infer L]
+  ? L
+  : never
+// @ts-ignore
+export type FirstFnParameterType<T extends any[]> = Parameters<PickLastInTuple<T>>[any]
+export type LastFnReturnType<T extends any[]> = ReturnType<T[0]>

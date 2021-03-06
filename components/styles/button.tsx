@@ -1,3 +1,4 @@
+import { css } from "@emotion/css"
 import styled from "@emotion/styled"
 
 export const Button = styled.button`
@@ -17,4 +18,13 @@ export const Button = styled.button`
     background-color: var(--headline);
     box-shadow: var(--sh-xl);
   }
+`
+
+export const resetButtonStyles = css`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition-s);
+  outline: none;
 `
