@@ -6,6 +6,7 @@ import { ChangeEvent, useState } from "react"
 interface CategoryProps {
   category: string
   handleCategory: (evt: ChangeEvent<HTMLInputElement>) => void
+  categories: Record<string, boolean>
 }
 
 const CateGoryItem = styled.li``
@@ -29,12 +30,19 @@ const buttonStyles = (hasBeenClicked: boolean) => css`
   }
 `
 
-export const Category = ({ category, handleCategory }: CategoryProps): JSX.Element => {
+export const Category = ({ category, handleCategory, categories }: CategoryProps): JSX.Element => {
   const [hasBeenClicked, setHasBeenClicked] = useState(false)
+
   return (
     <CateGoryItem>
       <label htmlFor={category}>{category}</label>
-      <input type="checkbox" name={category} id={category} />
+      <input
+        type="checkbox"
+        name={category}
+        id={category}
+        checked={categories[category]}
+        onChange={handleCategory}
+      />
     </CateGoryItem>
   )
 }

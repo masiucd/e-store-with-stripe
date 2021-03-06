@@ -46,6 +46,7 @@ const Post: FC<PostProps> = ({ post }) => (
       <p>{post.slug}</p>
       <p>{post.date}</p>
       <p>{post.excerpt}</p>
+      <p>category:{post.category}</p>
     </a>
   </Link>
 )

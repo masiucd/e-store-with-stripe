@@ -4,6 +4,7 @@ import { Category } from "./category"
 interface CategoryTableProps {
   uniqueList: Array<string>
   handleCategory: (evt: ChangeEvent<HTMLInputElement>) => void
+  categories: Record<string, boolean>
 }
 const tableStyles = css`
   display: flex;
@@ -12,11 +13,15 @@ const tableStyles = css`
   flex-flow: row wrap;
 `
 
-export function CategoryTable({ uniqueList, handleCategory }: CategoryTableProps): JSX.Element {
+export function CategoryTable({
+  uniqueList,
+  handleCategory,
+  categories,
+}: CategoryTableProps): JSX.Element {
   return (
     <ul className={tableStyles}>
       {uniqueList.map((x) => (
-        <Category key={x} category={x} handleCategory={handleCategory} />
+        <Category key={x} category={x} handleCategory={handleCategory} categories={categories} />
       ))}
     </ul>
   )
