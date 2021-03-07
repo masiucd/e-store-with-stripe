@@ -30,19 +30,51 @@ const buttonStyles = (hasBeenClicked: boolean) => css`
   }
 `
 
-export const Category = ({ category, handleCategory, categories }: CategoryProps): JSX.Element => {
-  const [hasBeenClicked, setHasBeenClicked] = useState(false)
+const checkBoxStyles = css`
+  display: grid;
+  grid-template-columns: 1em 1fr;
+  grid-gap: 0.5em;
+  grid-template-areas: "input";
+  position: relative;
+  cursor: pointer;
+  input[type="checkbox"] {
+    opacity: 0;
+    width: 1em;
+    height: 1em;
+    grid-area: "input";
+    place-content: center;
+    font-size: 1em;
+  }
+  span {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+  }
 
+  input[type="checkbox"]:checked + span {
+    background: var(--highlight-shadow);
+    width: 1.2rem;
+    height: 1.2rem;
+    display: inline-block;
+    box-shadow: var(--sh-xl);
+  }
+`
+
+export const Category = ({ category, handleCategory, categories }: CategoryProps): JSX.Element => {
+  // const [hasBeenClicked, setHasBeenClicked] = useState(false)
   return (
     <CateGoryItem>
-      <label htmlFor={category}>{category}</label>
-      <input
-        type="checkbox"
-        name={category}
-        id={category}
-        checked={categories[category]}
-        onChange={handleCategory}
-      />
+      <label htmlFor={category} className={checkBoxStyles}>
+        <input
+          type="checkbox"
+          name={category}
+          id={category}
+          checked={categories[category]}
+          onChange={handleCategory}
+        />
+        <span></span>
+        {category}
+      </label>
     </CateGoryItem>
   )
 }

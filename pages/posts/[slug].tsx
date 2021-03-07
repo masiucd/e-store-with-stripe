@@ -29,7 +29,7 @@ const components = {
 
 const PostPage: React.FC<PostPageProps> = ({ source, frontMatter }) => {
   const content = hydrate(source, { components })
-
+  // TODO: navigate front and back between posts
   return (
     <Layout>
       <section>
