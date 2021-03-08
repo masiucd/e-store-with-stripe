@@ -41,6 +41,7 @@ export interface FrontMatter {
   slug: string
   category: string
   excerpt: string
+  content: string
 }
 
 export interface Source {
@@ -55,3 +56,7 @@ export type PickLastInTuple<T extends any[]> = T extends [...rest: infer U, argn
 // @ts-ignore
 export type FirstFnParameterType<T extends any[]> = Parameters<PickLastInTuple<T>>[any]
 export type LastFnReturnType<T extends any[]> = ReturnType<T[0]>
+
+export type Items = {
+  [key: string]: string
+}

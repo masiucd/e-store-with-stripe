@@ -94,7 +94,10 @@ const BlogPage: NextPage<BlogPageProps> = ({ frontMatterList }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = fs.readdirSync("posts")
-  const postsToString = posts.map((x) => fs.readFileSync(path.join(POST_PATH, `${x}`), "utf-8"))
+  const postsToString = posts.map((post) =>
+    fs.readFileSync(path.join(POST_PATH, `${post}`), "utf-8")
+  )
+
   const frontMatterList: FrontMatter[] = []
 
   postsToString.forEach((p) => {
