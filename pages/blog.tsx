@@ -11,7 +11,7 @@ import path from "path"
 import matter from "gray-matter"
 import { FrontMatter } from "@utils/types"
 import useScroll from "@hooks/scroll"
-import { CategoryTable } from "@components/category-table/category-table"
+import { CategoryTable as FilterSection } from "@components/category-table/category-table"
 import { ChangeEvent, useEffect, useState } from "react"
 import { listOfKeys, getUniqueList } from "@utils/helpers"
 import { init, initCategories } from "@utils/blog-helpers"
@@ -45,6 +45,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ frontMatterList }) => {
   const [categories, setCategories] = useState<Record<string, boolean>>(() => ({}))
   const [selectedList, setSelectedList] = useState<string[]>([])
   const [filteredList, setFilteredList] = useState<FrontMatter[]>([])
+  const [inputValue, setInputValue] = useState("")
   const { data: posts } = useScroll({ list: frontMatterList })
   const { on: showFilterBar, toggle: toggleFilterBar } = useToggle()
 
@@ -70,18 +71,33 @@ const BlogPage: NextPage<BlogPageProps> = ({ frontMatterList }) => {
     setFilteredList(xs)
   }, [selectedList])
 
+  useEffect(() => {
+    if (inputValue.length > 0) {
+      const filteredListFromInput = posts.filter((p) => {
+        let re = new RegExp(`${inputValue}`, "gi")
+        return p.slug.match(re) || p.title.match(re)
+      })
+
+      setFilteredList(filteredListFromInput)
+    } else {
+      setFilteredList([])
+    }
+  }, [inputValue])
+
   return (
     <Layout>
       <TitleWrapper title="Posts" subTitle="running posts" className={titleStyles} />
       <Fade isAnimated={showFilterBar}>
-        <CategoryTable
+        <FilterSection
           uniqueList={uniqueListFrontMatterList}
           categories={categories}
           handleCategory={handleCategory}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
         />
       </Fade>
       <PostsWrapper>
-        {selectedList.length > 0
+        {selectedList.length > 0 || filteredList.length > 0
           ? filteredList.map((post) => <Post key={post.slug} post={post} />)
           : posts.map((post) => <Post key={post.slug} post={post} />)}
       </PostsWrapper>
